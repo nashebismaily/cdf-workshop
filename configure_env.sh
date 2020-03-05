@@ -6,7 +6,7 @@ HOSTNAME=$(hostname -f)
 CURRENT_DIR=$(pwd)
 
 # Install Dependencies
-yum -y install wget mysql-connector-java* unzip zip tree
+yum -y install maven wget mysql-connector-java* unzip zip tree
 
 # Install Impala Driver
 cp -r files/impala_jdbc_2.5.45.1065.zip /tmp
