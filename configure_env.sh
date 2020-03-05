@@ -6,7 +6,7 @@ HOSTNAME=$(hostname -f)
 CURRENT_DIR=$(pwd)
 
 # Install Dependencies
-yum -y install mysql-connector-java* unzip zip
+yum -y install wget mysql-connector-java* unzip zip tree
 
 # Install Impala Driver
 cp -r files/impala_jdbc_2.5.45.1065.zip /tmp
@@ -42,6 +42,14 @@ curl -X POST --header "Content-Type:application/octet-stream" --data-binary @twe
 curl -X POST --header "Content-Type:application/octet-stream" "http://$HOSTNAME:8983/solr/admin/collections?action=CREATE&name=tweets&&collection.configName=tweets&&numShards=1"
 
 
+# Configure Maven
 
+cd /root
+wget http://mirror.cogentco.com/pub/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+tar -xvf apache-maven-3.6.3-bin.tar.gz 
+echo "export M2_HOME=/root/apache-maven-3.6.3" >> /etc/profile.d/maven
+echo "export MAVEN_HOME=/root/apache-maven-3.6.3" >> /etc/profile.d/maven
+echo "export PATH=${M2_HOME}/bin:${PATH}" >> /etc/profile.d/maven
+source /etc/profile.d/maven 
 
 
